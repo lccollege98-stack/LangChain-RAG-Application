@@ -163,7 +163,7 @@ if user_q:
     retriever = vs.as_retriever(search_kwargs={"k": top_k})
 
     # Retrieve docs
-    docs = retriever.get_relevant_documents(user_q)
+    docs = retriever.invoke(user_q)
 
     # 🔍 Debug retrieved chunks
     with st.expander("🔍 Retrieved chunks (debug)"):
