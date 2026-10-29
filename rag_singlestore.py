@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import os
+from pathlib import Path
 from dataclasses import dataclass
 from typing import List, Tuple
 
@@ -36,7 +37,10 @@ def get_vectorstore(table_name: str | None = None) -> SingleStoreVectorStore:
     Returns a SingleStore-backed vector store.
     The integration package handles table creation/usage internally.
     """
-    embeddings = OpenAIEmbeddings()
+    
+    embeddings = OpenAIEmbeddings(
+    api_key=os.getenv("OPENAI_API_KEY")
+)
 
     return SingleStoreVectorStore(
         embedding=embeddings,

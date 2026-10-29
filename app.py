@@ -1,9 +1,10 @@
 from __future__ import annotations
 
 import os
+from pathlib import Path
 
 import streamlit as st
-from dotenv import load_dotenv
+from dotenv import find_dotenv, load_dotenv
 import singlestoredb as s2
 
 from langchain_core.prompts import ChatPromptTemplate
@@ -13,7 +14,8 @@ from loaders import uploaded_files_to_documents
 from prompts import SYSTEM_PROMPT
 from rag_singlestore import RagConfig, chunk_documents, format_sources, get_vectorstore
 
-load_dotenv()
+dotenv_path = Path(__file__).resolve().parent / ".env"
+load_dotenv(dotenv_path=dotenv_path, override=True)
 
 st.set_page_config(page_title="DocChat Pro (SingleStore)", page_icon="🧠", layout="wide")
 
